@@ -158,7 +158,7 @@ export function SalesSummary() {
 }
 ```
 
-型は `src/components/dashboard/types.ts` と `src/components/charts/types.ts` にあります。新しいグラフ種類やECharts機能を使う場合は、`EChart.tsx` の `echarts/core` への登録を追加します。現在は折れ線・棒・円グラフと、凡例・ツールチップ・ズーム・画像保存など必要な機能だけを読み込みます。
+型は `src/components/dashboard/types.ts` と `src/components/charts/types.ts` にあります。新しいグラフ種類やECharts機能を使う場合は、`EChart.tsx` の `echarts/core` への登録を追加します。現在は折れ線・棒・円・散布図・箱ひげ図・レーダー・ゲージと、凡例・ツールチップ・ズーム・画像保存など必要な機能だけを読み込みます。
 
 ## 設備監視デモのデータ
 
@@ -218,3 +218,52 @@ public/                        # faviconなど
 ```
 
 使用技術はReact 19、TypeScript 6、Vite 8、Tailwind CSS 4、shadcn/ui・Radix UI、next-themes、Apache ECharts、Lucide React、ESLintです。
+
+## 検索欄をJSONで設定する
+
+`src/config/search-config.json` の `fields` を編集します。配列の順序が画面の順序になります。項目名は `label`、表示有無は `visible`（省略すると表示）、横幅は `width`（px）、初期値は `defaultValue` で変更できます。`id` は重複しない名前を指定してください。
+
+```json
+{
+  "fields": [
+    { "id": "name", "label": "設備名を検索", "type": "text", "equipmentField": "name", "placeholder": "設備名の一部を入力", "width": 256 },
+    { "id": "status", "label": "状態", "type": "select", "equipmentField": "status", "placeholder": "すべての状態" },
+    { "id": "equipment", "label": "対象設備", "type": "select", "source": "equipment", "width": 256 },
+    { "id": "period", "label": "期間", "type": "select", "source": "period", "defaultValue": "today" },
+    { "id": "metric", "label": "特性値", "type": "select", "source": "metric" }
+  ]
+}
+```
+
+`source` は `equipment`・`period`・`metric` から指定し、同じsourceは1回まで使用できます。選択肢は既存のデータJSONから生成します。`options: [{ "value": "実際のID", "label": "表示名" }]` を指定すると、選択肢の表示名・順序・対象を変更できます。データに存在しないIDは表示されません。初期値が候補にない場合は先頭の候補を使用します。
+
+設備の絞り込み項目は `source` の代わりに `equipmentField` を指定します。対象は `id`・`name`・`status`・`factoryName`・`lineName`・`productSerial`。`text` は大文字小文字を区別しない部分一致、`select` は完全一致で、複数条件はAND検索です。selectの選択肢は設備データから自動生成され、`options` で明示的にも指定できます。空欄または「すべて」で絞り込みを解除します。絞り込みは対象設備の候補、設備一覧、選択設備のKPIに反映します。グラフのサンプル値は引き続き設備共通です。
+
+項目を削除するか `visible: false` にすると非表示になります。非表示の絞り込み条件は適用しません。source項目を削除した場合はデータの先頭を使います。新しいデータ属性や独自の検索処理を追加する場合はTypeScript側の拡張が必要です。
+
+開発中は保存すると反映されます。公開用ビルドではJSON変更後に再ビルドしてください。
+
+### 工場・ライン・設備・期間・製品シリアルで検索する
+
+現在の検索欄は「工場名」「ライン名」「設備名」「期間」「製品シリアル」の順です。工場名・ライン名は設備データの候補から選択し、設備名は絞り込んだ設備から選択します。製品シリアルは部分一致検索です。工場名・ライン名の「すべて」、製品シリアルの空欄で条件を解除します。
+
+`src/data/dashboard-data.json` の各設備に `factoryName`（工場名）、`lineName`（ライン名）、`productSerial`（製品シリアル）を設定します。追加した値はデモ用のサンプルです。これらの属性を省略した設備は空文字として扱います。サンプルでは設備ごとに1件のシリアルを持ち、実際の製品履歴や期間との組み合わせ検索は行いません。期間は既存の波形データの切り替えに使います。
+
+## 追加グラフを設定する
+
+「グラフ分析」タブに散布図・ヒストグラム・箱ひげ図・面グラフ・レーダーチャート・ゲージを追加しています。`src/data/analysis-chart-data.json` を編集して値を変更します。各グラフの `title` はカード名、`visible: false` は非表示、`height` は高さ（px、既定320）です。追加グラフは検索条件に連動しないサンプルデータです。
+
+| キー / 共通部品 | JSONで設定するデータ |
+| --- | --- |
+| `scatter` / `ScatterChart` | `xLabel`・`yLabel`、`series: [{ name, points: [{ x, y }], color? }]` |
+| `histogram` / `HistogramChart` | `samples: number[]`、`binCount`（1～100、既定10）、`unit` |
+| `boxplot` / `BoxPlotChart` | `groups: [{ name, samples: number[] }]`、`unit` |
+| `area` / `AreaChart` | `labels`、`series: [{ name, values: number[], color? }]`、`unit`、`stacked` |
+| `radar` / `RadarChart` | `indicators: [{ name, max }]`、`series: [{ name, values: number[], color? }]` |
+| `gauge` / `GaugeChart` | `name`、`value`、`min`（既定0）、`max`（既定100）、`unit` |
+
+面グラフのvaluesはlabelsの件数・順序、レーダーのvaluesはindicatorsの件数・順序に合わせます。レーダーのmaxは正の数、ゲージのmaxはminより大きい数を指定してください。
+
+ヒストグラムは等幅区間で集計します。区間の右端は最後の区間のみ含みます。同じ値だけの場合は1区間になります。箱ひげ図は線形補間で四分位数を計算し、1.5 IQR内の最小・最大値をひげとして、その外側を外れ値の点で表示します。空のグループは表示せず、有限数でない測定値は集計から除外します。
+
+追加部品も `data`・`darkMode`・`height` propsで個別利用できます。データ型は `src/components/charts/types.ts` にあります。`EquipmentDashboard` に独自のdataを渡す場合、追加グラフを表示するには `charts.analysis` を設定してください。

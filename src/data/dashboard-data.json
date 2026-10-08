@@ -9,7 +9,10 @@
         "productionCount": 1345,
         "abnormalCount": 3,
         "averageCycle": 12.4
-      }
+      },
+      "factoryName": "第一工場",
+      "lineName": "加工ライン",
+      "productSerial": "SN-20261008-001"
     },
     {
       "id": "MC-002",
@@ -20,7 +23,10 @@
         "productionCount": 1842,
         "abnormalCount": 3,
         "averageCycle": 12.4
-      }
+      },
+      "factoryName": "第一工場",
+      "lineName": "加工ライン",
+      "productSerial": "SN-20261008-002"
     },
     {
       "id": "MC-003",
@@ -31,7 +37,10 @@
         "productionCount": 978,
         "abnormalCount": 34,
         "averageCycle": 18.1
-      }
+      },
+      "factoryName": "第一工場",
+      "lineName": "組立ライン",
+      "productSerial": "SN-20261008-003"
     },
     {
       "id": "MC-004",
@@ -42,8 +51,10 @@
         "productionCount": 1842,
         "abnormalCount": 3,
         "averageCycle": 12.4
-      }
-  
+      },
+      "factoryName": "第二工場",
+      "lineName": "検査ライン",
+      "productSerial": "SN-20261008-004"
     }
   ]
 }

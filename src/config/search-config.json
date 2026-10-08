@@ -1,0 +1,39 @@
+{
+  "fields": [
+    {
+      "id": "factory",
+      "label": "工場名",
+      "type": "select",
+      "equipmentField": "factoryName",
+      "placeholder": "すべての工場"
+    },
+    {
+      "id": "line",
+      "label": "ライン名",
+      "type": "select",
+      "equipmentField": "lineName",
+      "placeholder": ""
+    },
+    {
+      "id": "equipment",
+      "label": "設備名",
+      "type": "select",
+      "source": "equipment",
+      "width": 256
+    },
+    {
+      "id": "period",
+      "label": "期間",
+      "type": "select",
+      "source": "period"
+    },
+    {
+      "id": "serial",
+      "label": "製品シリアル",
+      "type": "text",
+      "equipmentField": "productSerial",
+      "placeholder": "シリアルの一部を入力",
+      "width": 256
+    }
+  ]
+}

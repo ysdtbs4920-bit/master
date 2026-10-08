@@ -32,3 +32,55 @@ export type DonutChartData = {
   }[];
   unit?: string;
 };
+
+export type AreaChartData = {
+  labels: string[];
+  series: ChartSeries[];
+  unit?: string;
+  stacked?: boolean;
+};
+
+export type ScatterChartData = {
+  xLabel?: string;
+  yLabel?: string;
+  series: { name: string; points: { x: number; y: number }[]; color?: string }[];
+};
+
+export type HistogramChartData = {
+  samples: number[];
+  binCount?: number;
+  unit?: string;
+};
+
+export type BoxPlotChartData = {
+  groups: { name: string; samples: number[] }[];
+  unit?: string;
+};
+
+export type RadarChartData = {
+  indicators: { name: string; max: number }[];
+  series: ChartSeries[];
+};
+
+export type GaugeChartData = {
+  name: string;
+  value: number;
+  min?: number;
+  max?: number;
+  unit?: string;
+};
+
+export type AnalysisChartSettings<T> = T & {
+  title: string;
+  visible?: boolean;
+  height?: number;
+};
+
+export type AnalysisChartsData = {
+  area: AnalysisChartSettings<AreaChartData>;
+  scatter: AnalysisChartSettings<ScatterChartData>;
+  histogram: AnalysisChartSettings<HistogramChartData>;
+  boxplot: AnalysisChartSettings<BoxPlotChartData>;
+  radar: AnalysisChartSettings<RadarChartData>;
+  gauge: AnalysisChartSettings<GaugeChartData>;
+};

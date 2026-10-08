@@ -1,9 +1,10 @@
 import { useEffect, useRef } from "react";
 import * as echarts from "echarts/core";
-import { BarChart, LineChart, PieChart } from "echarts/charts";
+import { BarChart, LineChart, PieChart, ScatterChart, BoxplotChart, RadarChart, GaugeChart } from "echarts/charts";
 import {
   DataZoomComponent,
   GridComponent,
+  RadarComponent,
   LegendComponent,
   ToolboxComponent,
   TooltipComponent,
@@ -16,6 +17,11 @@ echarts.use([
   LineChart,
   BarChart,
   PieChart,
+  ScatterChart,
+  BoxplotChart,
+  RadarChart,
+  GaugeChart,
+  RadarComponent,
   GridComponent,
   LegendComponent,
   TooltipComponent,

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useTheme } from "next-themes";
 
+import { AnalysisCharts } from "@/components/charts/AnalysisCharts";
 import { ChartCard } from "@/components/charts/ChartCard";
 import { DonutChart } from "@/components/charts/DonutChart";
 import { LineChart } from "@/components/charts/LineChart";
@@ -28,6 +29,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { equipmentDashboardData } from "./data";
 import type { EquipmentDashboardData } from "./types";
+import { searchConfig, type SearchField } from "./search-config";
 
 type EquipmentDashboardProps = {
   data?: EquipmentDashboardData;
@@ -38,27 +40,56 @@ export function EquipmentDashboard({
   data = equipmentDashboardData,
 }: EquipmentDashboardProps) {
   const { dashboard, charts } = data;
-  const equipmentList = dashboard.equipment;
   const periods = charts.trend.periods;
   const metricOptions = Object.entries(charts.trend.metrics).map(
     ([id, item]) => ({ value: id, label: item.label }),
   );
-
-  const [equipment, setEquipment] = useState(equipmentList[0]?.id ?? "");
-  const [period, setPeriod] = useState(periods[0]?.id ?? "");
-  const [metric, setMetric] = useState(metricOptions[0]?.value ?? "");
+  const fields = searchConfig.fields;
+  const [searchValues, setSearchValues] = useState<Record<string, string>>({});
+  const updateSearch = (id: string, value: string) =>
+    setSearchValues((previous) => ({ ...previous, [id]: value }));
+  const filterOptions = (field: SearchField) => field.options ?? Array.from(
+    new Set(dashboard.equipment.map((item) => item[field.equipmentField!] ?? "")),
+  ).filter(Boolean).map((value) => ({ value, label: value }));
+  const filterValue = (field: SearchField) => {
+    const value = searchValues[field.id] ?? field.defaultValue ?? "";
+    return field.type === "text" || filterOptions(field).some((option) => option.value === value) ? value : "";
+  };
+  const equipmentList = dashboard.equipment.filter((item) => fields.every((field) => {
+    if (!field.equipmentField || field.visible === false) return true;
+    const value = filterValue(field);
+    const actual = item[field.equipmentField] ?? "";
+    return !value || (field.type === "text"
+      ? actual.toLocaleLowerCase().includes(value.trim().toLocaleLowerCase())
+      : actual === value);
+  }));
+  const sourceOptions = {
+    equipment: equipmentList.map((item) => ({ value: item.id, label: item.name })),
+    period: periods.map((item) => ({ value: item.id, label: item.label })),
+    metric: metricOptions,
+  };
+  const optionsFor = (field: SearchField) => {
+    if (!field.source) return filterOptions(field);
+    const available = sourceOptions[field.source];
+    return field.options ? field.options.filter((option) => available.some((item) => item.value === option.value)) : available;
+  };
+  const valueFor = (field: SearchField) => {
+    if (!field.source) return filterValue(field);
+    const options = optionsFor(field);
+    const requested = searchValues[field.id] ?? field.defaultValue;
+    return options.some((item) => item.value === requested) ? requested! : (options[0]?.value ?? "");
+  };
+  const sourceValue = (source: "equipment" | "period" | "metric") => {
+    const field = fields.find((item) => item.source === source);
+    return field ? valueFor(field) : (sourceOptions[source][0]?.value ?? "");
+  };
+  const selected = equipmentList.find((item) => item.id === sourceValue("equipment"));
+  const selectedPeriod = periods.find((item) => item.id === sourceValue("period"));
+  const selectedMetricId = sourceValue("metric");
   const { resolvedTheme } = useTheme();
   const darkMode = resolvedTheme === "dark";
   const colors = getChartColors(darkMode);
 
-  // データの差し替えで選択 ID がなくなった場合は先頭へ戻します。
-  const selected =
-    equipmentList.find((item) => item.id === equipment) ?? equipmentList[0];
-  const selectedPeriod =
-    periods.find((item) => item.id === period) ?? periods[0];
-  const selectedMetricId = metricOptions.some((item) => item.value === metric)
-    ? metric
-    : (metricOptions[0]?.value ?? "");
   const currentMetric = charts.trend.metrics[selectedMetricId];
   const values = selectedPeriod
     ? currentMetric?.values[selectedPeriod.id]
@@ -80,31 +111,32 @@ export function EquipmentDashboard({
 
       <Card>
         <CardContent className="flex flex-wrap gap-4 pt-6">
-          <DataSelect
-            label="対象設備"
-            options={equipmentList.map((item) => ({
-              value: item.id,
-              label: `${item.id} - ${item.name}`,
-            }))}
-            value={selected?.id ?? ""}
-            onValueChange={setEquipment}
-            className="w-64"
-          />
-          <DataSelect
-            label="表示期間"
-            options={periods.map((item) => ({
-              value: item.id,
-              label: item.label,
-            }))}
-            value={selectedPeriod?.id ?? ""}
-            onValueChange={setPeriod}
-          />
-          <DataSelect
-            label="特性値"
-            options={metricOptions}
-            value={selectedMetricId}
-            onValueChange={setMetric}
-          />
+          {fields.filter((field) => field.visible !== false).map((field) => (
+            <div key={field.id} style={{ width: field.width ?? 192, maxWidth: "100%" }}>
+              {field.type === "select" ? (
+                <DataSelect
+                  label={field.label}
+                  options={field.equipmentField
+                    ? [{ value: "__all__", label: field.placeholder ?? "すべて" }, ...optionsFor(field)]
+                    : optionsFor(field)}
+                  value={valueFor(field) || (field.equipmentField ? "__all__" : "")}
+                  onValueChange={(value) => updateSearch(field.id, value === "__all__" ? "" : value)}
+                  className="w-full"
+                />
+              ) : (
+                <label className="block space-y-2 text-sm font-medium">
+                  <span>{field.label}</span>
+                  <input
+                    type="text"
+                    value={valueFor(field)}
+                    onChange={(event) => updateSearch(field.id, event.target.value)}
+                    placeholder={field.placeholder}
+                    className="h-9 w-full rounded-md border border-input bg-transparent px-3 text-sm outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  />
+                </label>
+              )}
+            </div>
+          ))}
         </CardContent>
       </Card>
 
@@ -242,6 +274,7 @@ export function EquipmentDashboard({
               />
             </ChartCard>
           </div>
+          {charts.analysis && <AnalysisCharts data={charts.analysis} darkMode={darkMode} />}
         </TabsContent>
 
         <TabsContent value="equipment">

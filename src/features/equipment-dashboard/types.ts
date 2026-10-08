@@ -1,3 +1,5 @@
+import type { AnalysisChartsData } from "@/components/charts/types";
+
 export type EquipmentKpiData = {
   operatingRate: number;
   productionCount: number;
@@ -9,6 +11,9 @@ export type EquipmentData = {
   id: string;
   name: string;
   status: string;
+  factoryName?: string;
+  lineName?: string;
+  productSerial?: string;
   kpis: EquipmentKpiData;
 };
 
@@ -36,6 +41,7 @@ export type TrendMetricData = {
 };
 
 export type ChartData = {
+  analysis?: AnalysisChartsData;
   trend: {
     timeLabels: string[];
     periods: Array<{ id: string; label: string }>;
