@@ -247,11 +247,11 @@ public/                        # faviconなど
 
 現在の検索欄は「工場名」「ライン名」「設備名」「期間」「製品シリアル」の順です。工場名・ライン名は設備データの候補から選択し、設備名は絞り込んだ設備から選択します。製品シリアルは部分一致検索です。工場名・ライン名の「すべて」、製品シリアルの空欄で条件を解除します。
 
-`src/data/dashboard-data.json` の各設備に `factoryName`（工場名）、`lineName`（ライン名）、`productSerial`（製品シリアル）を設定します。追加した値はデモ用のサンプルです。これらの属性を省略した設備は空文字として扱います。サンプルでは設備ごとに1件のシリアルを持ち、実際の製品履歴や期間との組み合わせ検索は行いません。期間は既存の波形データの切り替えに使います。
+`src/data/dashboard-data.json` の各設備に `factoryName`（工場名）、`lineName`（ライン名）、`productSerial`（製品シリアル）を設定します。追加した値はデモ用のサンプルです。これらの属性を省略した設備は空文字として扱います。追加グラフではanalysis-records.jsonの記録を使い、複数シリアルと期間の組み合わせにも対応します。期間は保存済みの波形・分析記録の切り替えに使います。
 
 ## 追加グラフを設定する
 
-「グラフ分析」タブに散布図・ヒストグラム・箱ひげ図・面グラフ・レーダーチャート・ゲージを追加しています。`src/data/analysis-chart-data.json` を編集して値を変更します。各グラフの `title` はカード名、`visible: false` は非表示、`height` は高さ（px、既定320）です。追加グラフは検索条件に連動しないサンプルデータです。
+「グラフ分析」タブに散布図・ヒストグラム・箱ひげ図・面グラフ・レーダーチャート・ゲージを追加しています。`src/data/analysis-chart-data.json` を編集して値を変更します。各グラフの `title` はカード名、`visible: false` は非表示、`height` は高さ（px、既定320）です。追加グラフは検索条件に一致する `analysis-records.json` の記録から作ります。
 
 | キー / 共通部品 | JSONで設定するデータ |
 | --- | --- |
@@ -271,3 +271,19 @@ public/                        # faviconなど
 ## 初心者向けのファイル説明
 
 各ソースファイルの先頭に、役割・データの流れ・変更する場所の説明を追加しています。[ファイル説明](docs/beginner-guide.md)には、全ファイルの役割、JSON項目、よく変更する場所と用語をまとめています。
+
+## 検索に連動する追加グラフ
+
+`src/data/analysis-records.json` に設備・期間・製品シリアル別の測定記録を保存します。追加した記録はデモ用サンプルです。工場・ラインで設備候補を絞り、その中で選択した設備と期間に一致する記録を表示します。製品シリアルは記録内のシリアルを検索するので、設備に複数のシリアルがあっても対応できます。
+
+- `equipmentId`：dashboard-data.jsonの設備IDと一致させます。
+- `periodId`：chart-data.jsonの期間ID（today/week/monthなど）と一致させます。日付範囲の自動計算ではなく、期間ごとに保存済みの記録を選びます。
+- `productSerial`：製品シリアル。文字検索は部分一致、選択式は完全一致です。
+- `measurements`：label（時刻など）、temperature（℃）、cycleTime（秒）、productionCount（個）の配列。
+- `operatingRate`・`quality`・`productivity`・`maintenance`・`energySaving`：0～100の指標。
+
+散布図は温度とサイクル時間、ヒストグラムはサイクル時間、箱ひげ図はシリアル別のサイクル時間、面グラフは時刻別の生産数、レーダーは5つの指標、ゲージは一致した記録の稼働率の算術平均です。データがない場合は空状態を表示します。
+
+`analysis-chart-data.json` はタイトル・visible・height・ヒストグラムのbinCount・面グラフのstackedなどの表示設定として引き続き使用します。追加グラフの測定値はanalysis-records.jsonで変更してください。単体のグラフ部品では、これまでのデータ形式も引き続き利用できます。
+
+`src/features/equipment-dashboard/analysis-data.ts` が検索結果を6種類のグラフデータへ変換する処理です。独自のdata propsでは `charts.analysis` に表示設定、`charts.analysisRecords` に記録を渡します。記録がない場合に固定サンプルへ戻す処理はありません。

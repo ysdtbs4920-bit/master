@@ -48,6 +48,7 @@ export type TrendMetricData = {
 
 export type ChartData = {
   analysis?: AnalysisChartsData;
+  analysisRecords?: AnalysisRecord[];
   trend: {
     timeLabels: string[];
     periods: Array<{ id: string; label: string }>;
@@ -60,4 +61,22 @@ export type ChartData = {
 export type EquipmentDashboardData = {
   dashboard: DashboardData;
   charts: ChartData;
+};
+
+/** 設備・期間・製品シリアルで識別する分析記録。5つの指標は0～100の値です。 */
+export type AnalysisRecord = {
+  equipmentId: string;
+  periodId: string;
+  productSerial: string;
+  operatingRate: number;
+  quality: number;
+  productivity: number;
+  maintenance: number;
+  energySaving: number;
+  measurements: {
+    label: string;
+    temperature: number;
+    cycleTime: number;
+    productionCount: number;
+  }[];
 };

@@ -81,7 +81,7 @@
     ]
   },
   "boxplot": {
-    "title": "ライン別サイクル時間のばらつき",
+    "title": "製品シリアル別サイクル時間のばらつき",
     "visible": true,
     "unit": "秒",
     "groups": [
@@ -143,7 +143,7 @@
     ]
   },
   "area": {
-    "title": "ライン別生産数の推移",
+    "title": "製品シリアル別生産数の推移",
     "visible": true,
     "unit": "個",
     "stacked": true,
@@ -181,7 +181,7 @@
     ]
   },
   "radar": {
-    "title": "設備指標の比較",
+    "title": "製品シリアル別設備指標",
     "visible": true,
     "indicators": [
       {

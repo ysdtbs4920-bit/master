@@ -33,6 +33,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { selectAnalysisData } from "./analysis-data";
 import { equipmentDashboardData } from "./data";
 import type { EquipmentDashboardData } from "./types";
 import { searchConfig, type SearchField } from "./search-config";
@@ -57,7 +58,9 @@ export function EquipmentDashboard({
     setSearchValues((previous) => ({ ...previous, [id]: value }));
   // 明示した選択肢がなければ、設備データから候補を作ります。Setは重複を取り除きます。
   const filterOptions = (field: SearchField) => field.options ?? Array.from(
-    new Set(dashboard.equipment.map((item) => item[field.equipmentField!] ?? "")),
+    new Set(field.equipmentField === "productSerial" && charts.analysisRecords
+      ? charts.analysisRecords.map((record) => record.productSerial)
+      : dashboard.equipment.map((item) => item[field.equipmentField!] ?? "")),
   ).filter(Boolean).map((value) => ({ value, label: value }));
   const filterValue = (field: SearchField) => {
     const value = searchValues[field.id] ?? field.defaultValue ?? "";
@@ -67,6 +70,12 @@ export function EquipmentDashboard({
   const equipmentList = dashboard.equipment.filter((item) => fields.every((field) => {
     if (!field.equipmentField || field.visible === false) return true;
     const value = filterValue(field);
+    // シリアルは設備の代表値ではなく、分析記録内の全シリアルを検索します。
+    if (field.equipmentField === "productSerial" && charts.analysisRecords) {
+      const serials = charts.analysisRecords.filter((record) => record.equipmentId === item.id).map((record) => record.productSerial);
+      return !value || serials.some((serial) => field.type === "text"
+        ? serial.toLocaleLowerCase().includes(value.trim().toLocaleLowerCase()) : serial === value);
+    }
     const actual = item[field.equipmentField] ?? "";
     return !value || (field.type === "text"
       ? actual.toLocaleLowerCase().includes(value.trim().toLocaleLowerCase())
@@ -106,6 +115,18 @@ export function EquipmentDashboard({
   const currentMetric = charts.trend.metrics[selectedMetricId];
   const values = selectedPeriod
     ? currentMetric?.values[selectedPeriod.id]
+    : undefined;
+
+  // 表示中のシリアル検索条件を、分析記録の絞り込みにも渡します。
+  const serialFields = fields.filter((field) => field.equipmentField === "productSerial" && field.visible !== false);
+  const analysisRecords = (charts.analysisRecords ?? []).filter((record) => serialFields.every((field) => {
+    const query = filterValue(field);
+    return !query || (field.type === "text"
+      ? record.productSerial.toLocaleLowerCase().includes(query.trim().toLocaleLowerCase())
+      : record.productSerial === query);
+  }));
+  const selectedAnalysis = charts.analysis && selected && selectedPeriod
+    ? selectAnalysisData(charts.analysis, analysisRecords, selected.id, selectedPeriod.id)
     : undefined;
 
   return (
@@ -287,7 +308,13 @@ export function EquipmentDashboard({
               />
             </ChartCard>
           </div>
-          {charts.analysis && <AnalysisCharts data={charts.analysis} darkMode={darkMode} />}
+          {charts.analysis && (selectedAnalysis ? (
+            <AnalysisCharts data={selectedAnalysis} darkMode={darkMode} />
+          ) : (
+            <p role="status" className="py-8 text-center text-sm text-muted-foreground">
+              検索条件に一致する追加グラフのデータがありません。
+            </p>
+          ))}
         </TabsContent>
 
         <TabsContent value="equipment">

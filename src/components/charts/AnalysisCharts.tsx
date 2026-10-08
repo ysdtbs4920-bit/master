@@ -29,7 +29,7 @@ export function AnalysisCharts({ data, darkMode }: { data: AnalysisChartsData; d
     <section className="space-y-4" aria-label="追加グラフ">
       <div>
         <h3 className="text-lg font-semibold">追加グラフ</h3>
-        <p className="text-sm text-muted-foreground">検索条件に連動しない分析用のサンプルデータです。</p>
+        <p className="text-sm text-muted-foreground">選択した設備・期間・製品シリアルに一致する分析データです。</p>
       </div>
       {/* gridは格子状の配置、gap-4は間隔。lg:grid-cols-2は幅1024px以上で2列、それより狭いと1列です。 */}
       <div className="grid gap-4 lg:grid-cols-2">

@@ -61,7 +61,7 @@ JSONにはコメントを書けません。文字は二重引用符で囲み、�
 - アプリ全体の色：`src/index.css`。
 - 画面の追加：`src/features/` に部品を作り、`src/app/pages.ts` に登録します。
 
-検索条件は設備候補・一覧・KPIに反映します。追加6種類は独立したサンプル値で、検索条件とは連動しません。期間選択は既存波形の切り替えです。
+検索条件は設備候補・一覧・KPIに反映します。追加6種類は選択設備・期間・製品シリアルに一致する分析記録から作ります。期間選択は既存波形の切り替えです。
 
 ## ソース・スクリプト一覧
 
@@ -130,3 +130,19 @@ JSONにはコメントを書けません。文字は二重引用符で囲み、�
 ## 変更後の確認
 
 PowerShellでプロジェクトのフォルダーに移動し、`npm.cmd run check` でLint・型チェック・ビルド・テストを確認します。起動は `npm.cmd run dev`。開発中のJSON変更は保存後に反映され、公開用には再ビルドが必要です。
+
+## 検索に連動する追加グラフ
+
+`src/data/analysis-records.json` に設備・期間・製品シリアル別の測定記録を保存します。追加した記録はデモ用サンプルです。工場・ラインで設備候補を絞り、その中で選択した設備と期間に一致する記録を表示します。製品シリアルは記録内のシリアルを検索するので、設備に複数のシリアルがあっても対応できます。
+
+- `equipmentId`：dashboard-data.jsonの設備IDと一致させます。
+- `periodId`：chart-data.jsonの期間ID（today/week/monthなど）と一致させます。日付範囲の自動計算ではなく、期間ごとに保存済みの記録を選びます。
+- `productSerial`：製品シリアル。文字検索は部分一致、選択式は完全一致です。
+- `measurements`：label（時刻など）、temperature（℃）、cycleTime（秒）、productionCount（個）の配列。
+- `operatingRate`・`quality`・`productivity`・`maintenance`・`energySaving`：0～100の指標。
+
+散布図は温度とサイクル時間、ヒストグラムはサイクル時間、箱ひげ図はシリアル別のサイクル時間、面グラフは時刻別の生産数、レーダーは5つの指標、ゲージは一致した記録の稼働率の算術平均です。データがない場合は空状態を表示します。
+
+`analysis-chart-data.json` はタイトル・visible・height・ヒストグラムのbinCount・面グラフのstackedなどの表示設定として引き続き使用します。追加グラフの測定値はanalysis-records.jsonで変更してください。単体のグラフ部品では、これまでのデータ形式も引き続き利用できます。
+
+`src/features/equipment-dashboard/analysis-data.ts` が検索結果を6種類のグラフデータへ変換する処理です。独自のdata propsでは `charts.analysis` に表示設定、`charts.analysisRecords` に記録を渡します。記録がない場合に固定サンプルへ戻す処理はありません。

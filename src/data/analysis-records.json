@@ -1,0 +1,866 @@
+[
+  {
+    "equipmentId": "MC-001",
+    "periodId": "today",
+    "productSerial": "SN-20261008-001",
+    "operatingRate": 96,
+    "quality": 98,
+    "productivity": 85,
+    "maintenance": 80,
+    "energySaving": 75,
+    "measurements": [
+      {
+        "label": "08:00",
+        "temperature": 55.0,
+        "cycleTime": 11.95,
+        "productionCount": 100
+      },
+      {
+        "label": "09:00",
+        "temperature": 56.5,
+        "cycleTime": 12.25,
+        "productionCount": 105
+      },
+      {
+        "label": "10:00",
+        "temperature": 58.0,
+        "cycleTime": 12.55,
+        "productionCount": 110
+      },
+      {
+        "label": "11:00",
+        "temperature": 59.5,
+        "cycleTime": 12.85,
+        "productionCount": 115
+      },
+      {
+        "label": "12:00",
+        "temperature": 61.0,
+        "cycleTime": 11.95,
+        "productionCount": 120
+      },
+      {
+        "label": "13:00",
+        "temperature": 62.5,
+        "cycleTime": 12.25,
+        "productionCount": 125
+      },
+      {
+        "label": "14:00",
+        "temperature": 64.0,
+        "cycleTime": 12.55,
+        "productionCount": 130
+      },
+      {
+        "label": "15:00",
+        "temperature": 65.5,
+        "cycleTime": 12.85,
+        "productionCount": 135
+      },
+      {
+        "label": "16:00",
+        "temperature": 67.0,
+        "cycleTime": 11.95,
+        "productionCount": 140
+      },
+      {
+        "label": "17:00",
+        "temperature": 68.5,
+        "cycleTime": 12.25,
+        "productionCount": 145
+      }
+    ]
+  },
+  {
+    "equipmentId": "MC-001",
+    "periodId": "week",
+    "productSerial": "SN-20261008-001",
+    "operatingRate": 93,
+    "quality": 97,
+    "productivity": 86,
+    "maintenance": 79,
+    "energySaving": 74,
+    "measurements": [
+      {
+        "label": "08:00",
+        "temperature": 57.0,
+        "cycleTime": 12.45,
+        "productionCount": 115
+      },
+      {
+        "label": "09:00",
+        "temperature": 58.5,
+        "cycleTime": 12.75,
+        "productionCount": 120
+      },
+      {
+        "label": "10:00",
+        "temperature": 60.0,
+        "cycleTime": 13.05,
+        "productionCount": 125
+      },
+      {
+        "label": "11:00",
+        "temperature": 61.5,
+        "cycleTime": 13.35,
+        "productionCount": 130
+      },
+      {
+        "label": "12:00",
+        "temperature": 63.0,
+        "cycleTime": 12.45,
+        "productionCount": 135
+      },
+      {
+        "label": "13:00",
+        "temperature": 64.5,
+        "cycleTime": 12.75,
+        "productionCount": 140
+      },
+      {
+        "label": "14:00",
+        "temperature": 66.0,
+        "cycleTime": 13.05,
+        "productionCount": 145
+      },
+      {
+        "label": "15:00",
+        "temperature": 67.5,
+        "cycleTime": 13.35,
+        "productionCount": 150
+      },
+      {
+        "label": "16:00",
+        "temperature": 69.0,
+        "cycleTime": 12.45,
+        "productionCount": 155
+      },
+      {
+        "label": "17:00",
+        "temperature": 70.5,
+        "cycleTime": 12.75,
+        "productionCount": 160
+      }
+    ]
+  },
+  {
+    "equipmentId": "MC-001",
+    "periodId": "month",
+    "productSerial": "SN-20261008-001",
+    "operatingRate": 90,
+    "quality": 96,
+    "productivity": 87,
+    "maintenance": 78,
+    "energySaving": 73,
+    "measurements": [
+      {
+        "label": "08:00",
+        "temperature": 59.0,
+        "cycleTime": 12.95,
+        "productionCount": 130
+      },
+      {
+        "label": "09:00",
+        "temperature": 60.5,
+        "cycleTime": 13.25,
+        "productionCount": 135
+      },
+      {
+        "label": "10:00",
+        "temperature": 62.0,
+        "cycleTime": 13.55,
+        "productionCount": 140
+      },
+      {
+        "label": "11:00",
+        "temperature": 63.5,
+        "cycleTime": 13.85,
+        "productionCount": 145
+      },
+      {
+        "label": "12:00",
+        "temperature": 65.0,
+        "cycleTime": 12.95,
+        "productionCount": 150
+      },
+      {
+        "label": "13:00",
+        "temperature": 66.5,
+        "cycleTime": 13.25,
+        "productionCount": 155
+      },
+      {
+        "label": "14:00",
+        "temperature": 68.0,
+        "cycleTime": 13.55,
+        "productionCount": 160
+      },
+      {
+        "label": "15:00",
+        "temperature": 69.5,
+        "cycleTime": 13.85,
+        "productionCount": 165
+      },
+      {
+        "label": "16:00",
+        "temperature": 71.0,
+        "cycleTime": 12.95,
+        "productionCount": 170
+      },
+      {
+        "label": "17:00",
+        "temperature": 72.5,
+        "cycleTime": 13.25,
+        "productionCount": 175
+      }
+    ]
+  },
+  {
+    "equipmentId": "MC-002",
+    "periodId": "today",
+    "productSerial": "SN-20261008-002",
+    "operatingRate": 91,
+    "quality": 96,
+    "productivity": 82,
+    "maintenance": 82,
+    "energySaving": 78,
+    "measurements": [
+      {
+        "label": "08:00",
+        "temperature": 59.0,
+        "cycleTime": 12.15,
+        "productionCount": 120
+      },
+      {
+        "label": "09:00",
+        "temperature": 60.5,
+        "cycleTime": 12.45,
+        "productionCount": 125
+      },
+      {
+        "label": "10:00",
+        "temperature": 62.0,
+        "cycleTime": 12.75,
+        "productionCount": 130
+      },
+      {
+        "label": "11:00",
+        "temperature": 63.5,
+        "cycleTime": 13.05,
+        "productionCount": 135
+      },
+      {
+        "label": "12:00",
+        "temperature": 65.0,
+        "cycleTime": 12.15,
+        "productionCount": 140
+      },
+      {
+        "label": "13:00",
+        "temperature": 66.5,
+        "cycleTime": 12.45,
+        "productionCount": 145
+      },
+      {
+        "label": "14:00",
+        "temperature": 68.0,
+        "cycleTime": 12.75,
+        "productionCount": 150
+      },
+      {
+        "label": "15:00",
+        "temperature": 69.5,
+        "cycleTime": 13.05,
+        "productionCount": 155
+      },
+      {
+        "label": "16:00",
+        "temperature": 71.0,
+        "cycleTime": 12.15,
+        "productionCount": 160
+      },
+      {
+        "label": "17:00",
+        "temperature": 72.5,
+        "cycleTime": 12.45,
+        "productionCount": 165
+      }
+    ]
+  },
+  {
+    "equipmentId": "MC-002",
+    "periodId": "week",
+    "productSerial": "SN-20261008-002",
+    "operatingRate": 88,
+    "quality": 95,
+    "productivity": 83,
+    "maintenance": 81,
+    "energySaving": 77,
+    "measurements": [
+      {
+        "label": "08:00",
+        "temperature": 61.0,
+        "cycleTime": 12.65,
+        "productionCount": 135
+      },
+      {
+        "label": "09:00",
+        "temperature": 62.5,
+        "cycleTime": 12.95,
+        "productionCount": 140
+      },
+      {
+        "label": "10:00",
+        "temperature": 64.0,
+        "cycleTime": 13.25,
+        "productionCount": 145
+      },
+      {
+        "label": "11:00",
+        "temperature": 65.5,
+        "cycleTime": 13.55,
+        "productionCount": 150
+      },
+      {
+        "label": "12:00",
+        "temperature": 67.0,
+        "cycleTime": 12.65,
+        "productionCount": 155
+      },
+      {
+        "label": "13:00",
+        "temperature": 68.5,
+        "cycleTime": 12.95,
+        "productionCount": 160
+      },
+      {
+        "label": "14:00",
+        "temperature": 70.0,
+        "cycleTime": 13.25,
+        "productionCount": 165
+      },
+      {
+        "label": "15:00",
+        "temperature": 71.5,
+        "cycleTime": 13.55,
+        "productionCount": 170
+      },
+      {
+        "label": "16:00",
+        "temperature": 73.0,
+        "cycleTime": 12.65,
+        "productionCount": 175
+      },
+      {
+        "label": "17:00",
+        "temperature": 74.5,
+        "cycleTime": 12.95,
+        "productionCount": 180
+      }
+    ]
+  },
+  {
+    "equipmentId": "MC-002",
+    "periodId": "month",
+    "productSerial": "SN-20261008-002",
+    "operatingRate": 85,
+    "quality": 94,
+    "productivity": 84,
+    "maintenance": 80,
+    "energySaving": 76,
+    "measurements": [
+      {
+        "label": "08:00",
+        "temperature": 63.0,
+        "cycleTime": 13.15,
+        "productionCount": 150
+      },
+      {
+        "label": "09:00",
+        "temperature": 64.5,
+        "cycleTime": 13.45,
+        "productionCount": 155
+      },
+      {
+        "label": "10:00",
+        "temperature": 66.0,
+        "cycleTime": 13.75,
+        "productionCount": 160
+      },
+      {
+        "label": "11:00",
+        "temperature": 67.5,
+        "cycleTime": 14.05,
+        "productionCount": 165
+      },
+      {
+        "label": "12:00",
+        "temperature": 69.0,
+        "cycleTime": 13.15,
+        "productionCount": 170
+      },
+      {
+        "label": "13:00",
+        "temperature": 70.5,
+        "cycleTime": 13.45,
+        "productionCount": 175
+      },
+      {
+        "label": "14:00",
+        "temperature": 72.0,
+        "cycleTime": 13.75,
+        "productionCount": 180
+      },
+      {
+        "label": "15:00",
+        "temperature": 73.5,
+        "cycleTime": 14.05,
+        "productionCount": 185
+      },
+      {
+        "label": "16:00",
+        "temperature": 75.0,
+        "cycleTime": 13.15,
+        "productionCount": 190
+      },
+      {
+        "label": "17:00",
+        "temperature": 76.5,
+        "cycleTime": 13.45,
+        "productionCount": 195
+      }
+    ]
+  },
+  {
+    "equipmentId": "MC-003",
+    "periodId": "today",
+    "productSerial": "SN-20261008-003",
+    "operatingRate": 72,
+    "quality": 94,
+    "productivity": 79,
+    "maintenance": 84,
+    "energySaving": 81,
+    "measurements": [
+      {
+        "label": "08:00",
+        "temperature": 63.0,
+        "cycleTime": 18.05,
+        "productionCount": 140
+      },
+      {
+        "label": "09:00",
+        "temperature": 64.5,
+        "cycleTime": 18.35,
+        "productionCount": 145
+      },
+      {
+        "label": "10:00",
+        "temperature": 66.0,
+        "cycleTime": 18.65,
+        "productionCount": 150
+      },
+      {
+        "label": "11:00",
+        "temperature": 67.5,
+        "cycleTime": 18.95,
+        "productionCount": 155
+      },
+      {
+        "label": "12:00",
+        "temperature": 69.0,
+        "cycleTime": 18.05,
+        "productionCount": 160
+      },
+      {
+        "label": "13:00",
+        "temperature": 70.5,
+        "cycleTime": 18.35,
+        "productionCount": 165
+      },
+      {
+        "label": "14:00",
+        "temperature": 72.0,
+        "cycleTime": 18.65,
+        "productionCount": 170
+      },
+      {
+        "label": "15:00",
+        "temperature": 73.5,
+        "cycleTime": 18.95,
+        "productionCount": 175
+      },
+      {
+        "label": "16:00",
+        "temperature": 75.0,
+        "cycleTime": 18.05,
+        "productionCount": 180
+      },
+      {
+        "label": "17:00",
+        "temperature": 76.5,
+        "cycleTime": 18.35,
+        "productionCount": 185
+      }
+    ]
+  },
+  {
+    "equipmentId": "MC-003",
+    "periodId": "week",
+    "productSerial": "SN-20261008-003",
+    "operatingRate": 69,
+    "quality": 93,
+    "productivity": 80,
+    "maintenance": 83,
+    "energySaving": 80,
+    "measurements": [
+      {
+        "label": "08:00",
+        "temperature": 65.0,
+        "cycleTime": 18.55,
+        "productionCount": 155
+      },
+      {
+        "label": "09:00",
+        "temperature": 66.5,
+        "cycleTime": 18.85,
+        "productionCount": 160
+      },
+      {
+        "label": "10:00",
+        "temperature": 68.0,
+        "cycleTime": 19.15,
+        "productionCount": 165
+      },
+      {
+        "label": "11:00",
+        "temperature": 69.5,
+        "cycleTime": 19.45,
+        "productionCount": 170
+      },
+      {
+        "label": "12:00",
+        "temperature": 71.0,
+        "cycleTime": 18.55,
+        "productionCount": 175
+      },
+      {
+        "label": "13:00",
+        "temperature": 72.5,
+        "cycleTime": 18.85,
+        "productionCount": 180
+      },
+      {
+        "label": "14:00",
+        "temperature": 74.0,
+        "cycleTime": 19.15,
+        "productionCount": 185
+      },
+      {
+        "label": "15:00",
+        "temperature": 75.5,
+        "cycleTime": 19.45,
+        "productionCount": 190
+      },
+      {
+        "label": "16:00",
+        "temperature": 77.0,
+        "cycleTime": 18.55,
+        "productionCount": 195
+      },
+      {
+        "label": "17:00",
+        "temperature": 78.5,
+        "cycleTime": 18.85,
+        "productionCount": 200
+      }
+    ]
+  },
+  {
+    "equipmentId": "MC-003",
+    "periodId": "month",
+    "productSerial": "SN-20261008-003",
+    "operatingRate": 66,
+    "quality": 92,
+    "productivity": 81,
+    "maintenance": 82,
+    "energySaving": 79,
+    "measurements": [
+      {
+        "label": "08:00",
+        "temperature": 67.0,
+        "cycleTime": 19.05,
+        "productionCount": 170
+      },
+      {
+        "label": "09:00",
+        "temperature": 68.5,
+        "cycleTime": 19.35,
+        "productionCount": 175
+      },
+      {
+        "label": "10:00",
+        "temperature": 70.0,
+        "cycleTime": 19.65,
+        "productionCount": 180
+      },
+      {
+        "label": "11:00",
+        "temperature": 71.5,
+        "cycleTime": 19.95,
+        "productionCount": 185
+      },
+      {
+        "label": "12:00",
+        "temperature": 73.0,
+        "cycleTime": 19.05,
+        "productionCount": 190
+      },
+      {
+        "label": "13:00",
+        "temperature": 74.5,
+        "cycleTime": 19.35,
+        "productionCount": 195
+      },
+      {
+        "label": "14:00",
+        "temperature": 76.0,
+        "cycleTime": 19.65,
+        "productionCount": 200
+      },
+      {
+        "label": "15:00",
+        "temperature": 77.5,
+        "cycleTime": 19.95,
+        "productionCount": 205
+      },
+      {
+        "label": "16:00",
+        "temperature": 79.0,
+        "cycleTime": 19.05,
+        "productionCount": 210
+      },
+      {
+        "label": "17:00",
+        "temperature": 80.5,
+        "cycleTime": 19.35,
+        "productionCount": 215
+      }
+    ]
+  },
+  {
+    "equipmentId": "MC-004",
+    "periodId": "today",
+    "productSerial": "SN-20261008-004",
+    "operatingRate": 98,
+    "quality": 92,
+    "productivity": 76,
+    "maintenance": 86,
+    "energySaving": 84,
+    "measurements": [
+      {
+        "label": "08:00",
+        "temperature": 67.0,
+        "cycleTime": 12.55,
+        "productionCount": 160
+      },
+      {
+        "label": "09:00",
+        "temperature": 68.5,
+        "cycleTime": 12.85,
+        "productionCount": 165
+      },
+      {
+        "label": "10:00",
+        "temperature": 70.0,
+        "cycleTime": 13.15,
+        "productionCount": 170
+      },
+      {
+        "label": "11:00",
+        "temperature": 71.5,
+        "cycleTime": 13.45,
+        "productionCount": 175
+      },
+      {
+        "label": "12:00",
+        "temperature": 73.0,
+        "cycleTime": 12.55,
+        "productionCount": 180
+      },
+      {
+        "label": "13:00",
+        "temperature": 74.5,
+        "cycleTime": 12.85,
+        "productionCount": 185
+      },
+      {
+        "label": "14:00",
+        "temperature": 76.0,
+        "cycleTime": 13.15,
+        "productionCount": 190
+      },
+      {
+        "label": "15:00",
+        "temperature": 77.5,
+        "cycleTime": 13.45,
+        "productionCount": 195
+      },
+      {
+        "label": "16:00",
+        "temperature": 79.0,
+        "cycleTime": 12.55,
+        "productionCount": 200
+      },
+      {
+        "label": "17:00",
+        "temperature": 80.5,
+        "cycleTime": 12.85,
+        "productionCount": 205
+      }
+    ]
+  },
+  {
+    "equipmentId": "MC-004",
+    "periodId": "week",
+    "productSerial": "SN-20261008-004",
+    "operatingRate": 95,
+    "quality": 91,
+    "productivity": 77,
+    "maintenance": 85,
+    "energySaving": 83,
+    "measurements": [
+      {
+        "label": "08:00",
+        "temperature": 69.0,
+        "cycleTime": 13.05,
+        "productionCount": 175
+      },
+      {
+        "label": "09:00",
+        "temperature": 70.5,
+        "cycleTime": 13.35,
+        "productionCount": 180
+      },
+      {
+        "label": "10:00",
+        "temperature": 72.0,
+        "cycleTime": 13.65,
+        "productionCount": 185
+      },
+      {
+        "label": "11:00",
+        "temperature": 73.5,
+        "cycleTime": 13.95,
+        "productionCount": 190
+      },
+      {
+        "label": "12:00",
+        "temperature": 75.0,
+        "cycleTime": 13.05,
+        "productionCount": 195
+      },
+      {
+        "label": "13:00",
+        "temperature": 76.5,
+        "cycleTime": 13.35,
+        "productionCount": 200
+      },
+      {
+        "label": "14:00",
+        "temperature": 78.0,
+        "cycleTime": 13.65,
+        "productionCount": 205
+      },
+      {
+        "label": "15:00",
+        "temperature": 79.5,
+        "cycleTime": 13.95,
+        "productionCount": 210
+      },
+      {
+        "label": "16:00",
+        "temperature": 81.0,
+        "cycleTime": 13.05,
+        "productionCount": 215
+      },
+      {
+        "label": "17:00",
+        "temperature": 82.5,
+        "cycleTime": 13.35,
+        "productionCount": 220
+      }
+    ]
+  },
+  {
+    "equipmentId": "MC-004",
+    "periodId": "month",
+    "productSerial": "SN-20261008-004",
+    "operatingRate": 92,
+    "quality": 90,
+    "productivity": 78,
+    "maintenance": 84,
+    "energySaving": 82,
+    "measurements": [
+      {
+        "label": "08:00",
+        "temperature": 71.0,
+        "cycleTime": 13.55,
+        "productionCount": 190
+      },
+      {
+        "label": "09:00",
+        "temperature": 72.5,
+        "cycleTime": 13.85,
+        "productionCount": 195
+      },
+      {
+        "label": "10:00",
+        "temperature": 74.0,
+        "cycleTime": 14.15,
+        "productionCount": 200
+      },
+      {
+        "label": "11:00",
+        "temperature": 75.5,
+        "cycleTime": 14.45,
+        "productionCount": 205
+      },
+      {
+        "label": "12:00",
+        "temperature": 77.0,
+        "cycleTime": 13.55,
+        "productionCount": 210
+      },
+      {
+        "label": "13:00",
+        "temperature": 78.5,
+        "cycleTime": 13.85,
+        "productionCount": 215
+      },
+      {
+        "label": "14:00",
+        "temperature": 80.0,
+        "cycleTime": 14.15,
+        "productionCount": 220
+      },
+      {
+        "label": "15:00",
+        "temperature": 81.5,
+        "cycleTime": 14.45,
+        "productionCount": 225
+      },
+      {
+        "label": "16:00",
+        "temperature": 83.0,
+        "cycleTime": 13.55,
+        "productionCount": 230
+      },
+      {
+        "label": "17:00",
+        "temperature": 84.5,
+        "cycleTime": 13.85,
+        "productionCount": 235
+      }
+    ]
+  }
+]
