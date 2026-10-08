@@ -1,3 +1,9 @@
+/**
+ * 共通ボタン。variantは色や枠、sizeは大きさ。asChildならリンクなどにボタンの見た目を付けます。
+ * 呼び出し元から渡すpropsは部品の設定、childrenは内側に表示する内容です。
+ * classNameは見た目のCSSクラス。業務データはfeaturesやdataで変更します。
+ */
+
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"

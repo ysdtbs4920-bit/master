@@ -1,3 +1,9 @@
+/**
+ * すべてのグラフに共通する描画処理。EChartsというライブラリを使います。
+ * グラフの作成・設定の更新・大きさの変更・画面を閉じたときの破棄を担当します。
+ * 新しいグラフ種類にはecharts.useへの登録が必要。見た目の設定は各グラフ部品が渡します。
+ */
+
 import { useEffect, useRef } from "react";
 import * as echarts from "echarts/core";
 import { BarChart, LineChart, PieChart, ScatterChart, BoxplotChart, RadarChart, GaugeChart } from "echarts/charts";
@@ -42,6 +48,7 @@ export function EChart({
   height = 300,
   darkMode = false,
 }: EChartProps) {
+  // refは画面の再表示を起こさずに、描画先の要素やグラフの実体を保持します。
   const containerRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<echarts.ECharts | null>(null);
 
@@ -80,6 +87,7 @@ export function EChart({
       return;
     }
 
+    // notMergeで古い系列を残さず、新しい設定に置き換えます。
     chartRef.current.setOption(option, { notMerge: true });
   }, [option, darkMode]);
 

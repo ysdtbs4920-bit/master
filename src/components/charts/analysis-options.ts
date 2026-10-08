@@ -1,8 +1,15 @@
+/**
+ * 追加6種類について、JSONの値をEChartsの表示設定に変換する関数群です。
+ * xAxis/yAxisは軸、seriesは描くデータ、tooltipはカーソルを合わせたときの表示です。
+ * グラフの見た目を変えるならここ、測定値を変えるならanalysis-chart-data.jsonを編集します。
+ */
+
 import type { EChartsOption } from "echarts";
 import { getChartColors } from "./chart-theme";
 import { buildHistogram, summarizeBoxPlot } from "./statistics";
 import type { AreaChartData, ScatterChartData, HistogramChartData, BoxPlotChartData, RadarChartData, GaugeChartData } from "./types";
 
+// 全グラフで使う設定。背景を透明にし、リセットと画像保存を用意します。
 const common = { backgroundColor: "transparent", toolbox: { feature: { restore: {}, saveAsImage: {} } } };
 const grid = { left: 65, right: 25, top: 55, bottom: 75 };
 const palette = (darkMode: boolean) => {
@@ -37,6 +44,7 @@ export function scatterOption(data: ScatterChartData, darkMode: boolean): EChart
   };
 }
 
+// 生の測定値を区間ごとの件数に変換して、隙間のない棒として描きます。
 export function histogramOption(data: HistogramChartData, darkMode: boolean): EChartsOption {
   const bins = buildHistogram(data.samples, data.binCount);
   const format = (value: number) => Number(value.toPrecision(6)).toString();
@@ -48,6 +56,7 @@ export function histogramOption(data: HistogramChartData, darkMode: boolean): EC
   };
 }
 
+// 四分位数とひげを箱ひげ図、外れ値を散布図の点として重ねます。
 export function boxPlotOption(data: BoxPlotChartData, darkMode: boolean): EChartsOption {
   const groups = data.groups.flatMap((group) => {
     const result = summarizeBoxPlot(group.samples);

@@ -1,3 +1,9 @@
+/**
+ * ヒストグラムを表示する小さな部品です。
+ * dataにはsamples（測定値）・binCount（区間数）を渡します。darkModeは暗いテーマか、heightは高さです。
+ * 表示設定はanalysis-options.tsで作り、実際の描画はEChart.tsxに任せます。
+ */
+
 import { EChart } from "./EChart";
 import { histogramOption } from "./analysis-options";
 import type { HistogramChartData } from "./types";

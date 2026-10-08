@@ -1,3 +1,9 @@
+/**
+ * 各JSONの読み込みを1か所にまとめ、画面に渡すデータを作ります。
+ * dashboardは設備、chartsは波形など、charts.analysisは追加6種類のグラフです。
+ * 将来APIから読み込む場合は、この読み込み部分が変更の出発点になります。
+ */
+
 import analysisJson from "@/data/analysis-chart-data.json";
 import chartJson from "@/data/chart-data.json";
 import dashboardJson from "@/data/dashboard-data.json";

@@ -1,3 +1,9 @@
+/**
+ * 時系列の値を折れ線で表示します。参考値の線も追加できます。
+ * labelsは横軸の名前、seriesは各系列の名前と値。順序と件数を合わせます。
+ * optionはEChartsへの指示書。ズームや凡例、画像保存の設定もここにあります。
+ */
+
 import type { EChartsOption, LineSeriesOption } from "echarts";
 
 import { EChart } from "./EChart";

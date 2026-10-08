@@ -1,3 +1,9 @@
+/**
+ * JSONの文章をカードに表示するシンプルな画面例です。
+ * dataを渡さない場合はstarter-data.jsonの内容を使います。
+ * 文章はJSON、カードの配置やデザインはこのファイルで変更します。
+ */
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import starterJson from "@/data/starter-data.json";
 import type { StarterPageData } from "./types";

@@ -1,3 +1,9 @@
+/**
+ * 設備監視データの設計図。TypeScriptが項目名や値の種類を確認するために使います。
+ * stringは文字、numberは数値、[]は配列、?は省略できる項目です。
+ * 項目を追加するときはJSONとこの型、必要なら検索設定の検証も合わせて変更します。
+ */
+
 import type { AnalysisChartsData } from "@/components/charts/types";
 
 export type EquipmentKpiData = {

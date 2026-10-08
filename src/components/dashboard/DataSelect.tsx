@@ -1,3 +1,9 @@
+/**
+ * 見出し付きの選択欄。設備専用ではなく、任意の選択肢を渡せます。
+ * optionsのvalueは内部の値、labelは画面に表示する文字です。
+ * onValueChangeは選択が変わったときに親へ通知する関数です。
+ */
+
 import { useId } from "react";
 
 import {
@@ -25,6 +31,7 @@ export function DataSelect({
   onValueChange,
   className,
 }: DataSelectProps) {
+  // 各選択欄に一意のIDを付け、見出しと入力欄を対応させます。
   const id = useId();
 
   return (

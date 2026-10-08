@@ -1,3 +1,9 @@
+/**
+ * 表の土台。Headerが見出し、Bodyがデータ、Rowが行、Cellが1つのセルです。
+ * 呼び出し元から渡すpropsは部品の設定、childrenは内側に表示する内容です。
+ * classNameは見た目のCSSクラス。業務データはfeaturesやdataで変更します。
+ */
+
 "use client"
 
 import * as React from "react"

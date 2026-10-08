@@ -1,3 +1,9 @@
+/**
+ * 0～100の値をバーの長さで表示する部品。設備一覧の稼働率で使用します。
+ * 呼び出し元から渡すpropsは部品の設定、childrenは内側に表示する内容です。
+ * classNameは見た目のCSSクラス。業務データはfeaturesやdataで変更します。
+ */
+
 import * as React from "react"
 import { cn } from "cn"
 import { Progress as ProgressPrimitive } from "radix-ui"

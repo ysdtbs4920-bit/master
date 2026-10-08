@@ -1,3 +1,9 @@
+/**
+ * 全画面で共通の外枠。ヘッダー・画面メニュー・本文・フッターを表示します。
+ * childrenにはApp.tsxから現在の画面が渡されます。
+ * max-w-7xlは全体の最大幅、p-4やmd:p-8は画面端の余白です。
+ */
+
 import type { ReactNode } from "react";
 
 import { Badge } from "@/components/ui/badge";

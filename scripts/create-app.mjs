@@ -1,3 +1,9 @@
+/**
+ * このマスターをコピーし、新しいアプリのフォルダーを作るスクリプトです。
+ * 名前やコピー先を確認し、必要なファイルをコピーしてアプリ名を書き換えます。
+ * node_modulesや秘密情報、リンクは除外します。コピー対象はtemplateEntriesで確認できます。
+ */
+
 import { constants } from 'node:fs'
 import { copyFile, lstat, mkdir, readFile, readdir, realpath, writeFile } from 'node:fs/promises'
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path'

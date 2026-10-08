@@ -1,3 +1,9 @@
+/**
+ * 集計の正しさと、追加6種類が描画できることを確認する自動テストです。
+ * 一時フォルダーにTypeScriptを変換し、ブラウザーなしでSVG（図形データ）に描画します。
+ * 件数の境界・外れ値・空データ・両テーマを確認します。npm.cmd testで実行します。
+ */
+
 import assert from "node:assert/strict";
 import { test, after } from "node:test";
 import { readFile, writeFile, mkdtemp, rm } from "node:fs/promises";

@@ -1,3 +1,9 @@
+/**
+ * 同じ位置の値を積み上げた棒グラフ。正常品と不良品などの内訳に使います。
+ * seriesの各配列はlabelsの順序に対応します。stackは積み上げるグループ名です。
+ * 単純な棒グラフに変える場合は、系列のstack設定を見直します。
+ */
+
 import type { BarSeriesOption, EChartsOption } from "echarts";
 
 import { EChart } from "./EChart";

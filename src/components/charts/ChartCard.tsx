@@ -1,3 +1,9 @@
+/**
+ * グラフを囲むカード。見出し・任意の説明・中身を表示します。
+ * childrenにはLineChartなどのグラフ部品が渡されます。
+ * カードの余白や見出しを共通で変える場合に編集します。
+ */
+
 import type { ReactNode } from "react";
 
 import {

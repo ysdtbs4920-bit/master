@@ -1,3 +1,9 @@
+/**
+ * アプリ複製スクリプトの自動テストです。テスト用の一時フォルダーで確認します。
+ * 既存のコピー先を上書きしないこと、アプリ名の更新、除外するファイルなどを検証します。
+ * testは確認項目、assertは期待どおりかを判定する関数。npm.cmd testで実行します。
+ */
+
 import assert from 'node:assert/strict'
 import { execFile } from 'node:child_process'
 import fs from 'node:fs'

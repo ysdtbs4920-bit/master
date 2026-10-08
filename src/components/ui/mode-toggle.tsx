@@ -1,3 +1,9 @@
+/**
+ * ライトとダークを切り替えるボタン。useThemeから現在のテーマと変更関数を受け取ります。
+ * 呼び出し元から渡すpropsは部品の設定、childrenは内側に表示する内容です。
+ * classNameは見た目のCSSクラス。業務データはfeaturesやdataで変更します。
+ */
+
 import { useTheme } from "next-themes";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";

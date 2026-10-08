@@ -1,3 +1,9 @@
+/**
+ * 項目ごとの割合を、中央に穴のある円グラフで表示します。
+ * itemsのnameが項目名、valueが量、colorは省略できる色指定です。
+ * 割合はEChartsが値の合計から計算します。
+ */
+
 import type { EChartsOption } from "echarts";
 
 import { EChart } from "./EChart";

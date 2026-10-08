@@ -1,3 +1,9 @@
+/**
+ * 共通グラフが受け取るデータの形を定義します。
+ * ChartSeriesは系列（1本の線など）。AnalysisChartSettingsはタイトルや表示設定を加えます。
+ * 新しいJSONを作るときは、そのグラフの型を見ると必要な項目がわかります。
+ */
+
 /** JSONで渡せるグラフ共通の系列データ。 */
 export type ChartSeries = {
   name: string;

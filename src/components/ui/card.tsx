@@ -1,3 +1,9 @@
+/**
+ * カードの枠・見出し・本文・フッターを分けた部品。組み合わせて使います。
+ * 呼び出し元から渡すpropsは部品の設定、childrenは内側に表示する内容です。
+ * classNameは見た目のCSSクラス。業務データはfeaturesやdataで変更します。
+ */
+
 import * as React from "react"
 import { cn } from "cn"
 

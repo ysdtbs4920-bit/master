@@ -1,3 +1,9 @@
+/**
+ * 選択欄の土台。Triggerが選択欄、Contentが候補一覧、Itemが候補1個です。
+ * 呼び出し元から渡すpropsは部品の設定、childrenは内側に表示する内容です。
+ * classNameは見た目のCSSクラス。業務データはfeaturesやdataで変更します。
+ */
+
 "use client"
 
 import * as React from "react"

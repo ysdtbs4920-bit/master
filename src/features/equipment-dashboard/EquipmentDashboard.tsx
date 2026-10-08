@@ -1,3 +1,9 @@
+/**
+ * 設備監視画面全体。検索欄・KPI・グラフ・設備一覧を組み立てます。
+ * search-config.jsonが検索項目、data.tsがデータの読み込み元です。
+ * 検索条件はsearchValuesに保存します。追加グラフの並びはAnalysisCharts.tsxで変更します。
+ */
+
 import { useState } from "react";
 import { useTheme } from "next-themes";
 
@@ -45,9 +51,11 @@ export function EquipmentDashboard({
     ([id, item]) => ({ value: id, label: item.label }),
   );
   const fields = searchConfig.fields;
+  // useStateは入力内容を覚える仕組み。更新すると画面も再表示されます。
   const [searchValues, setSearchValues] = useState<Record<string, string>>({});
   const updateSearch = (id: string, value: string) =>
     setSearchValues((previous) => ({ ...previous, [id]: value }));
+  // 明示した選択肢がなければ、設備データから候補を作ります。Setは重複を取り除きます。
   const filterOptions = (field: SearchField) => field.options ?? Array.from(
     new Set(dashboard.equipment.map((item) => item[field.equipmentField!] ?? "")),
   ).filter(Boolean).map((value) => ({ value, label: value }));
@@ -55,6 +63,7 @@ export function EquipmentDashboard({
     const value = searchValues[field.id] ?? field.defaultValue ?? "";
     return field.type === "text" || filterOptions(field).some((option) => option.value === value) ? value : "";
   };
+  // filterは条件に合う設備を残し、everyはすべての検索条件に合うか判定します。
   const equipmentList = dashboard.equipment.filter((item) => fields.every((field) => {
     if (!field.equipmentField || field.visible === false) return true;
     const value = filterValue(field);
@@ -63,6 +72,7 @@ export function EquipmentDashboard({
       ? actual.toLocaleLowerCase().includes(value.trim().toLocaleLowerCase())
       : actual === value);
   }));
+  // 設備・期間・特性値それぞれの選択肢。設備だけは検索結果から作ります。
   const sourceOptions = {
     equipment: equipmentList.map((item) => ({ value: item.id, label: item.name })),
     period: periods.map((item) => ({ value: item.id, label: item.label })),
@@ -73,6 +83,7 @@ export function EquipmentDashboard({
     const available = sourceOptions[field.source];
     return field.options ? field.options.filter((option) => available.some((item) => item.value === option.value)) : available;
   };
+  // 保存した値が候補からなくなったら、候補の先頭を使います。
   const valueFor = (field: SearchField) => {
     if (!field.source) return filterValue(field);
     const options = optionsFor(field);
@@ -83,6 +94,7 @@ export function EquipmentDashboard({
     const field = fields.find((item) => item.source === source);
     return field ? valueFor(field) : (sourceOptions[source][0]?.value ?? "");
   };
+  // findは条件に合う最初の1件を取得します。対象がなければundefinedになります。
   const selected = equipmentList.find((item) => item.id === sourceValue("equipment"));
   const selectedPeriod = periods.find((item) => item.id === sourceValue("period"));
   const selectedMetricId = sourceValue("metric");
@@ -90,6 +102,7 @@ export function EquipmentDashboard({
   const darkMode = resolvedTheme === "dark";
   const colors = getChartColors(darkMode);
 
+  // 選択した特性値と期間から波形を取り出します。波形のサンプル値は設備共通です。
   const currentMetric = charts.trend.metrics[selectedMetricId];
   const values = selectedPeriod
     ? currentMetric?.values[selectedPeriod.id]

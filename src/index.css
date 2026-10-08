@@ -1,3 +1,6 @@
+/* 全画面の色・文字・角丸を定義します。
+ * :rootは明るいテーマ、.darkは暗いテーマ。--で始まる名前は再利用するCSS変数です。
+ * @themeはTailwindのbg-backgroundなどのクラスとCSS変数を結び付けます。 */
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";

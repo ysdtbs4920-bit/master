@@ -1,3 +1,9 @@
+/**
+ * 画面の登録一覧。idはURLの識別名、labelはメニューの表示名です。
+ * componentは表示するReact部品。lazyで必要になったときに読み込みます。
+ * 画面を増やすときはappPagesに追加します。配列の先頭が既定の画面です。
+ */
+
 import { lazy } from "react";
 import type { ComponentType } from "react";
 

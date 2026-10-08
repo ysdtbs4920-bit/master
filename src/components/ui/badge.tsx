@@ -1,3 +1,9 @@
+/**
+ * 状態や区分を短い文字で表示する小さなラベル。variantで見た目を切り替えます。
+ * 呼び出し元から渡すpropsは部品の設定、childrenは内側に表示する内容です。
+ * classNameは見た目のCSSクラス。業務データはfeaturesやdataで変更します。
+ */
+
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "cn"
