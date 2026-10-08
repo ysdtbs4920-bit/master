@@ -1,0 +1,8 @@
+{
+  "id": "app-template",
+  "title": "特性値可視化アプリ",
+  "description": "React + TypeScript + shadcn/ui",
+  "badge": "TEMPLATE",
+  "footer": "製造統括部 業務変革企画室",
+  "language": "ja"
+}

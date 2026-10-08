@@ -1,0 +1,49 @@
+{
+  "equipment": [
+    {
+      "id": "MC-001",
+      "name": "加工機 A",
+      "status": "稼働中",
+      "kpis": {
+        "operatingRate": 96,
+        "productionCount": 1345,
+        "abnormalCount": 3,
+        "averageCycle": 12.4
+      }
+    },
+    {
+      "id": "MC-002",
+      "name": "加工機 B",
+      "status": "稼働中",
+      "kpis": {
+        "operatingRate": 91,
+        "productionCount": 1842,
+        "abnormalCount": 3,
+        "averageCycle": 12.4
+      }
+    },
+    {
+      "id": "MC-003",
+      "name": "組立機 C",
+      "status": "停止中",
+      "kpis": {
+        "operatingRate": 72,
+        "productionCount": 978,
+        "abnormalCount": 34,
+        "averageCycle": 18.1
+      }
+    },
+    {
+      "id": "MC-004",
+      "name": "検査機 D",
+      "status": "稼働中",
+      "kpis": {
+        "operatingRate": 98,
+        "productionCount": 1842,
+        "abnormalCount": 3,
+        "averageCycle": 12.4
+      }
+  
+    }
+  ]
+}
